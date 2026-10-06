@@ -4,7 +4,8 @@ services:
   app:
     image: stirlingtools/stirling-pdf:latest
     ports:
-      - '8080:8080'
+      - '8070:8080' 
+      # Changed host port to 8070 to not conflict with monica
     volumes:
       - ./trainingData:/usr/share/tessdata # Required for extra OCR languages
       - ./extraConfigs:/configs

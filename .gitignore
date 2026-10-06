@@ -1,2 +1,12 @@
+# Ignore azerothcore-wotlk env files
+docker/azerothcore-wotlk/env
+
 # Ignore freshrss config files
 docker/freshrss/config
+
+# Ignore monica .env file that has the APP_KEY
+docker/monica/.env
+
+# Ignore stirling-pdf extraConfigs and training Data
+docker/stirling-pdf/extraConfigs
+docker/stirling-pdf/trainingData

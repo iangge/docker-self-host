@@ -1,6 +1,5 @@
 # Source: https://docs.hoarder.app/Installation/docker/
 
-version: "3.8"
 services:
   web:
     image: ghcr.io/hoarder-app/hoarder:${HOARDER_VERSION:-release}

@@ -62,7 +62,7 @@ $(eval PROJECTS_$(subst -,_,$(HOSTNAME)) := $(shell ls docker))
 # show project list
 .PHONY: list-projects
 list-projects:
-	@printf "\033[0;7m'$(HOSTNAME): $(PROJECTS_$(subst -,_,$(HOSTNAME)))'\033[0m"
+	@printf "\033[0;7m'$(HOSTNAME): $(PROJECTS_$(subst -,_,$(HOSTNAME)))'\033[0m\n"
 
 # update projects
 pull: list-projects $(patsubst %, %.pull, $(PROJECTS_$(subst -,_,$(HOSTNAME))))

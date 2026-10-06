@@ -8,7 +8,8 @@ services:
     ports:
       - 8080:80
     environment:
-      - APP_KEY= # Generate with `echo -n 'base64:'; openssl rand -base64 32`
+      # Need to create APP_KEY variable in a .env file in the monica directory
+      - APP_KEY=${APP_KEY} # Generate with `echo -n 'base64:'; openssl rand -base64 32`
       - DB_HOST=db
       - DB_USERNAME=monica
       - DB_PASSWORD=secret
