@@ -1,4 +1,6 @@
 # Source: https://gist.github.com/jyio/22bfc530fda828652b4be6daa176f829
+# To work for Windows Git Bash, install with chocolatey - https://stackoverflow.com/a/69021327
+
 
 ## Goals:
 ##
@@ -11,7 +13,7 @@
 # anything that depends on this phony target would inherit phony behavior
 .PHONY: docker-compose
 
-PREFIX := ~/docker
+PREFIX := $(shell pwd)/docker
 HOSTNAME := $(shell hostname)
 
 # use hostname-specific override if available
@@ -54,10 +56,13 @@ PROJECTS_host_02 = caddy syncthing nsd gatus
 PROJECTS_host_03 = caddy syncthing sshwifty
 PROJECTS_host_04 = caddy syncthing seafile joplin gitea photoprism borgbackup smokeping samba
 
+# Use 'eval' to force Makefile to expand $(HOSTNAME) properly before assigning the list
+$(eval PROJECTS_$(subst -,_,$(HOSTNAME)) := $(shell ls docker))
+
 # show project list
 .PHONY: list-projects
 list-projects:
-	@echo -e '\033[0;7m'$(HOSTNAME): $(PROJECTS_$(subst -,_,$(HOSTNAME)))'\033[0m'
+	@printf "\033[0;7m'$(HOSTNAME): $(PROJECTS_$(subst -,_,$(HOSTNAME)))'\033[0m"
 
 # update projects
 pull: list-projects $(patsubst %, %.pull, $(PROJECTS_$(subst -,_,$(HOSTNAME))))

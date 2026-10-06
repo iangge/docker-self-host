@@ -1,0 +1,18 @@
+# Source: https://github.com/OpenFusionProject/OpenFusion/blob/master/docker-compose.yml
+
+services:
+  openfusion:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: openfusion/openfusion:latest
+    volumes:
+      - ./config.ini:/usr/src/app/config.ini
+      # - ./database.db:/usr/src/app/database.db
+      # Database line commented out to have the server be compatible with Docker Desktop on Windows
+      - ./tdata:/usr/src/app/tdata
+      - ./sql:/usr/src/app/sql
+    ports:
+      - "23000:23000"
+      - "23001:23001"
+      - "8003:8003"
